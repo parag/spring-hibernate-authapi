@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>Apptest API</display-name>
+	<servlet>
+		<servlet-name>api</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>api</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:api-context.xml, classpath:appdata-context.xml, classpath*:spring/application-context-*.xml</param-value>
+	</context-param>
+	
+	<filter>
+	    <filter-name>baseFilter</filter-name>
+	    <filter-class>
+	        org.springframework.web.filter.DelegatingFilterProxy
+	    </filter-class>
+	    <init-param>
+	    	<param-name>targetBeanName</param-name>
+	    	<param-value>baseFilter</param-value>
+	    </init-param>
+	    <init-param>
+	    	<param-name>targetFilterLifecycle</param-name>
+	    	<param-value>true</param-value>
+	    </init-param>
+	</filter>
+	
+	<filter-mapping>
+        <filter-name>baseFilter</filter-name>
+        <url-pattern>/rest/*</url-pattern>
+    </filter-mapping>
+</web-app>

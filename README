@@ -1,0 +1,7 @@
+A spring opensource project for exposing API. This project contains the basic barebones to get started creating API using Spring. Included is the complete user registration / login flow also. 
+
+Have used filter (interceptor). Any api starting with /a will automatically be validated for authentication
+
+System is written considering Enterprise server needs to be built. User is associated with Account with one-many relationship. Source code can be modified as per programmer's need.
+
+TODO: Migrate to Spring security
